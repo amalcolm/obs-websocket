@@ -210,6 +210,7 @@ private:
 	RequestResult GetMonitorList(const Request &);
 	RequestResult OpenVideoMixProjector(const Request &);
 	RequestResult OpenSourceProjector(const Request &);
+	RequestResult SetWindowSizeAndPosition(const Request &);
 
 	SessionPtr _session;
 	static const std::unordered_map<std::string, RequestMethodHandler> _handlerMap;

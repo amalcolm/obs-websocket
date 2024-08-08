@@ -302,3 +302,26 @@ RequestResult RequestHandler::OpenSourceProjector(const Request &request)
 
 	return RequestResult::Success();
 }
+
+RequestResult RequestHandler::SetWindowSizeAndPosition(const Request &request)
+{
+	auto params = new QRect(
+				request.RequestData["x"], 
+				request.RequestData["y"], 
+				request.RequestData["width"],
+				request.RequestData["height"]
+	);
+
+	// Queue the task inside of the UI thread to prevent race conditions
+	obs_queue_task(
+		OBS_TASK_UI,
+		[](void *param) {
+			auto p = (QRect *)param;
+			obs_frontend_set_main_window_size_and_pos(p->x(), p->y(), p->width(), p->height());
+			delete p;
+		},
+		params, true);
+
+
+	return RequestResult::Success();
+}
