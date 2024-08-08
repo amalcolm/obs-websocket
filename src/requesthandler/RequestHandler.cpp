@@ -195,7 +195,7 @@ const std::unordered_map<std::string, RequestMethodHandler> RequestHandler::_han
 	{"GetMonitorList", &RequestHandler::GetMonitorList},
 	{"OpenVideoMixProjector", &RequestHandler::OpenVideoMixProjector},
 	{"OpenSourceProjector", &RequestHandler::OpenSourceProjector},
-};
+	{"SetWindowSizeAndPosition", &RequestHandler::SetWindowSizeAndPosition}};
 
 RequestHandler::RequestHandler(SessionPtr session) : _session(session) {}
 
